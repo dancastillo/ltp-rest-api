@@ -2,51 +2,51 @@ const mongoose = require("mongoose");
 const List = mongoose.model("Lists");
 
 // get all lists
-exports.getListItems = (req, res) => {
+exports.getListItems = (request, response) => {
     List.find({}, (err, list) => {
         if (err)
-            res.send(err);
+            response.send(err);
         
-        res.json(list);
+        response.json(list);
     });
 };
 
 // create a list
-exports.createListItem = (req, res) => {
-    let newList = new List(req.body);
+exports.createListItem = (request, response) => {
+    let newList = new List(request.body);
     newList.save( (err, list) => {
         if (err)
-            res.send(err);
+            response.send(err);
         
-        res.json(list);
+        response.json(list);
     });
 };
 
 // read a single list 
-exports.readListItem = (req, res) => {
-    List.findById(req.params.id, (err, list) => {
+exports.readListItem = (request, response) => {
+    List.findById(request.params.id, (err, list) => {
         if (err)
-            res.send(err);
-        res.json(list);
+            response.send(err);
+        response.json(list);
     });
 };
 
 // update a particular list 
-exports.updateListItem = (req, res) => {
-  List.findOneAndUpdate(req.params.id, req.body, { new: true }, (err, list) => {
+exports.updateListItem = (request, response) => {
+  List.findOneAndUpdate(request.params.id, request.body, { new: true }, (err, list) => {
     if (err) 
-        res.send(err);
-    res.json(list);
+        response.send(err);
+    response.json(list);
   });
 };
 
 // delete a single list 
-exports.deleteListItem = (req, res) => {
+exports.deleteListItem = (request, response) => {
     List.remove({
-        _id: req.params.id
+        _id: request.params.id
     }, (err, list) => {
         if (err)
-            res.send(err);
-        res.json({ message: 'List deleted!!' });
+            response.send(err);
+        response.json({ message: 'List deleted!!' });
     });
 };
