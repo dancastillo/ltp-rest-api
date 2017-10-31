@@ -12,7 +12,7 @@ const options = {
   useMongoClient: true
 };
 
-const uri = 'mongodb://localhost:27017/learntoprogramtv';
+const uri = process.env.MONGODB_URI;
 
 // connect to mongodb
 mongoose.connect(uri, options).then(
