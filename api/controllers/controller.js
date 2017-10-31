@@ -13,11 +13,10 @@ exports.getListItems = (request, response) => {
 
 // create a list
 exports.createListItem = (request, response) => {
-    let newList = new List(request.body);
-    newList.save( (err, list) => {
+    let newListItem = new List(request.body);
+    newListItem.save( (err, list) => {
         if (err)
             response.send(err);
-        
         response.json(list);
     });
 };
@@ -48,5 +47,14 @@ exports.deleteListItem = (request, response) => {
         if (err)
             response.send(err);
         response.json({ message: 'List deleted!!' });
+    });
+};
+
+// delete all list items - testing only
+exports.delete_all_items = (request, response) => {
+    List.remove({}, (err, list) => {
+        if (err)
+            response.send(err);
+        response.json({ message: 'All list items deleted!!' });
     });
 };
