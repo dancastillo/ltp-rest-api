@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const List = mongoose.model("Lists");
 
 // get all lists
-exports.getListItems = (request, response) => {
+exports.get_list_items = (request, response) => {
     List.find({}, (err, list) => {
         if (err)
             response.send(err);
@@ -12,7 +12,7 @@ exports.getListItems = (request, response) => {
 };
 
 // create a list
-exports.createListItem = (request, response) => {
+exports.create_list_item = (request, response) => {
     let newListItem = new List(request.body);
     newListItem.save( (err, list) => {
         if (err)
@@ -22,7 +22,7 @@ exports.createListItem = (request, response) => {
 };
 
 // read a single list 
-exports.readListItem = (request, response) => {
+exports.read_list_item = (request, response) => {
     List.findById(request.params.id, (err, list) => {
         if (err)
             response.send(err);
@@ -31,7 +31,7 @@ exports.readListItem = (request, response) => {
 };
 
 // update a particular list 
-exports.updateListItem = (request, response) => {
+exports.update_list_item = (request, response) => {
   List.findOneAndUpdate(request.params.id, request.body, { new: true }, (err, list) => {
     if (err) 
         response.send(err);
@@ -40,7 +40,7 @@ exports.updateListItem = (request, response) => {
 };
 
 // delete a single list 
-exports.deleteListItem = (request, response) => {
+exports.delete_list_item = (request, response) => {
     List.remove({
         _id: request.params.id
     }, (err, list) => {
