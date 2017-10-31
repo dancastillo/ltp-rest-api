@@ -7,8 +7,11 @@ module.exports = (app) => {
     .get(ltpList.getListItems) 
     .post(ltpList.createListItem);
   
-  app.route('/list/:listId')
+  app.route('/list/:id')
     .get(ltpList.readListItem)
     .put(ltpList.updateListItem)
+    .delete(ltpList.deleteListItem);
+
+  app.route('/list/empty')
     .delete(ltpList.deleteListItem);
 }
