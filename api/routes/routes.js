@@ -4,14 +4,14 @@ module.exports = (app) => {
 
   // our Routes
   app.route('/lists')
-    .get(ltpList.getListItems) 
-    .post(ltpList.createListItem);
+    .get(ltpList.get_list_items) 
+    .post(ltpList.create_list_item);
   
   app.route('/list/:id')
-    .get(ltpList.readListItem)
-    .put(ltpList.updateListItem)
-    .delete(ltpList.deleteListItem);
+    .get(ltpList.read_list_item)
+    .put(ltpList.update_list_item)
+    .delete(ltpList.delete_list_item);
 
   app.route('/list/empty')
-    .delete(ltpList.deleteListItem);
+    .delete(ltpList.delete_all_items);
 }
