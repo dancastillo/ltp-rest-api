@@ -29,5 +29,4 @@ const routes = require("./api/routes/routes");
 // register routes
 routes(app);
 
-app.listen(port); 
-console.log('App running on ' + port);
+app.listen(port);
