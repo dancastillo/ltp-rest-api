@@ -1,9 +1,19 @@
 const mongoose = require("mongoose");
 const List = mongoose.model("Lists");
 
-// get all lists
-exports.get_list_items = (request, response) => {
+// get all lists items with all fields
+exports.get_list_items_fields = (request, response) => {
     List.find({}, (err, list) => {
+        if (err)
+            response.send(err);
+        
+        response.json(list);
+    });
+};
+
+// get all lists items
+exports.get_list_items = (request, response) => {
+    List.find({}, { id: 1, name: 1 }, (err, list) => {
         if (err)
             response.send(err);
         
