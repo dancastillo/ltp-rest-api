@@ -42,7 +42,9 @@ exports.read_list_item = (request, response) => {
 
 // update a particular list 
 exports.update_list_item = (request, response) => {
-  List.findOneAndUpdate(request.params.id, request.body, { new: true }, (err, list) => {
+  List.findOneAndUpdate({ 
+      _id: request.params.id 
+    }, request.body, { new: true }, (err, list) => {
     if (err) 
         response.send(err);
     response.json(list);
